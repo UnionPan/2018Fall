@@ -1,0 +1,13 @@
+1. There is a slight different between probability (I know the model and parameter, what is the probability of getting the data) and statistics (I have a lot of data, what is the most likely model and parameter that generate these observed data. So you need to estimate the parameter just as what we did in that question). 
+
+2. Both ML and MAP try to estimate \theta based on n observations X1=x1 to Xn=xn, the only different is whether the prior information is considered or not. 
+(Note that ML P (X1, . . . , Xn|θ) also have n observation of X1=x1 to Xn=xn ! See remark 3 for more details.)
+
+For an example, you flip a coin for 10 times and get 7 up and 3 down, then use ML, you will guess that the probability of up is 0.7. However, if you use MAP with a prior of Gaussian(0.5,0.1), you will guess the probability of up is 0.558. (You can compute this example yourself if you are interested.)
+
+3. Mathematically, ML P (X1=x1, . . . , Xn=xn|θ) is a function of x1,…xn,θ, denoted by f1(x1,…xn,θ). 
+MAP P (θ | X1=x1, . . . , Xn=xn)  is also a function of x1,…xn,θ, denoted by f2(x1,…xn,θ). So max P (θ | X1=x1, . . . , Xn=xn) will give you the same result as max P (θ, X1=x1, . . . , Xn=xn) when you max over θ because P(X1=x1, . . . , Xn=xn) is constant over θ.
+
+In short, for a given sequence of data x1,…xn, ML try to max f1(θ) over θ and MAP try to max f1(θ)*p(θ) over θ, where p(θ) is the prior information. That is why I said the only difference is the prior information. 
+
+4. For the example I give, if the prior information now is uniform[0.5,1] instead of (0,1], the ML and MAP will have different results, i.e., if you obtain the estimate \hat{θ}\in (0,0.5], it is no longer optimal. If you obtain \hat{θ}\in [0.5,1], then they are the same. 
